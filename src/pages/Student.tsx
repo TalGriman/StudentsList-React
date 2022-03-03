@@ -27,7 +27,7 @@ const Student: FC = (props) => {
     const [gender, setGender] = useState<string>();
     const [school, setSchool] = useState<string>();
     const [city, setCity] = useState<string>();
-    const [img, setImg] = useState<string>();
+    const [image, setImage] = useState<string>();
 
     const [errorNameMessage, setErrorNameMessage] = useState<string>("");
     const [errorAgeMessage, setErrorAgeMessage] = useState<string>("");
@@ -59,7 +59,7 @@ const Student: FC = (props) => {
         setCity(currentStudent?.City);
         setSchool(currentStudent?.School);
         setGender(currentStudent?.Gender);
-        setImg(currentStudent?.Image);
+        setImage(currentStudent?.Image);
         setIsEditMode(true);
     };
 
@@ -87,7 +87,7 @@ const Student: FC = (props) => {
 
             const base64 = await toBase64(e.target.files[0]) as string;
             console.log(base64)
-            setImg(base64);
+            setImage(base64);
 
         }
     };
@@ -110,7 +110,7 @@ const Student: FC = (props) => {
             Gender: gender || "",
             Name: name || "",
             School: school || "",
-            Image: img || currentStudent?.Image || ""
+            Image: image || currentStudent?.Image || ""
         }
 
         const tempStudents = [...students];
@@ -131,7 +131,7 @@ const Student: FC = (props) => {
         setGender(undefined);
         setSchool(undefined);
         setCity(undefined);
-        setImg(undefined);
+        setImage(undefined);
         setErrorAgeMessage("");
         setErrorCityMessage("");
         setErrorNameMessage("");
@@ -189,10 +189,20 @@ const Student: FC = (props) => {
                 <div className='student-img-title-container'>
                     <div className='student-img-wrapper'>
                         {
-                            !currentStudent.Image.includes("data:") ?
-                                <img className='student-img' src={require(`../assets/${currentStudent.Image}`)} />
-                                :
-                                <img className='student-img-data' src={currentStudent.Image} />
+                            !isEditMode ?
+                                !currentStudent.Image.includes("data:") ?
+                                    <img className='student-img' src={require(`../assets/${currentStudent.Image}`)} />
+                                    :
+                                    <img className='student-img-data' src={currentStudent.Image} />
+                                : null
+                        }
+                        {
+                            isEditMode && image ?
+                                !image.includes("data:") ?
+                                    <img className='student-img' src={require(`../assets/${image}`)} />
+                                    :
+                                    <img className='student-img-data' src={image} />
+                                : null
                         }
                     </div>
                     {

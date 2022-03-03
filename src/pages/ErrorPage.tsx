@@ -11,7 +11,7 @@ const ErrorPage: FC = (props) => {
       <h1>Error... 404!</h1>
       <h2>The page does not exists.</h2>
       <button onClick={() => navigate('/')}>Click here to go back home page</button>
-    </div>
+    </div> 
   );
 
 }
