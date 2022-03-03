@@ -296,14 +296,14 @@ ul.container-pagination {
 }
 
 .detail-p-wrapper {
-  width: 75%;
+  width: 85%;
   flex-grow: 1;
   overflow-wrap: break-word;
 }
 
 .input-wrapper {
   display: flex;
-  width: 90%;
+  width: 85%;
   flex-grow: 1;
   overflow-wrap: break-word;
   margin: 1rem 0;
@@ -415,6 +415,8 @@ ul.container-pagination {
   .student-edit-mode-wrapper{
     width: 90%;
   }
+
+  
 }
 
 @media screen and (min-width:500px) {
@@ -427,6 +429,7 @@ ul.container-pagination {
   .detail-p-wrapper {
     width: 91%;
   }
+  
 
 
 }
@@ -526,6 +529,9 @@ ul.container-pagination {
   .detail-icon-wrapper {
     width: 7%;
 
+  }
+  .input-wrapper{
+    width: 93%;
   }
 
   .detail-p-wrapper {

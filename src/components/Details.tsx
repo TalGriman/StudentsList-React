@@ -1,7 +1,4 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
-import AddressBookIcon from '../assets/Svg/AddressBookIcon';
-import { Student } from '../Common/Interfaces';
 import TextInput from './TextInput';
 
 interface DetailsProps {

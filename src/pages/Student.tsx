@@ -1,5 +1,3 @@
-import { rejects } from 'node:assert';
-import { resolve } from 'node:path/win32';
 import React, { FC, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import AddressBookIcon from '../assets/Svg/AddressBookIcon';
@@ -35,16 +33,17 @@ const Student: FC = (props) => {
     const [errorSchoolMessage, setErrorSchoolMessage] = useState<string>("");
     const [errorCityMessage, setErrorCityMessage] = useState<string>("");
 
+
     useEffect(() => {
-        const storageData = sessionStorage.getItem("students");
-        if (storageData === null) {
+        const storageData = sessionStorage.getItem("students"); // get the students from session storage
+        if (storageData === null) { // check if in session storage there is data
             navigate("/");
             return;
         }
-        const studentID = parseInt(location.pathname.split("/")[2]); // get student id
+        const studentID = parseInt(location.pathname.split("/")[2]); // get student id from browser path
         const data: student[] = JSON.parse(storageData);
-        const cStudent = data.find((s) => s.ID === studentID);
-        if (!cStudent) {
+        const cStudent = data.find((s) => s.ID === studentID); // get the current user
+        if (!cStudent) { // if not current user go back home
             navigate("/");
             return;
         }
@@ -86,7 +85,6 @@ const Student: FC = (props) => {
             if (!e.target.files) return;
 
             const base64 = await toBase64(e.target.files[0]) as string;
-            console.log(base64)
             setImage(base64);
 
         }
@@ -114,8 +112,9 @@ const Student: FC = (props) => {
         }
 
         const tempStudents = [...students];
-        const index = tempStudents.findIndex((stu) => stu.ID === updatedDetails.ID);
-        tempStudents[index] = updatedDetails;
+        const index = tempStudents.findIndex((stu) => stu.ID === updatedDetails.ID); // find the current student
+        tempStudents[index] = updatedDetails; // replace with new data
+        // save the new data in states and session storage
         sessionStorage.setItem("students", JSON.stringify(tempStudents));
         setCurrentStudent(updatedDetails);
         setStudents(tempStudents);
@@ -140,6 +139,7 @@ const Student: FC = (props) => {
 
     };
 
+    // fields validations
     const checkFields = () => {
         let counter = 0;
         if (!age || age === "") {
@@ -191,17 +191,17 @@ const Student: FC = (props) => {
                         {
                             !isEditMode ?
                                 !currentStudent.Image.includes("data:") ?
-                                    <img className='student-img' src={require(`../assets/${currentStudent.Image}`)} />
+                                    <img alt='student' className='student-img' src={require(`../assets/${currentStudent.Image}`)} />
                                     :
-                                    <img className='student-img-data' src={currentStudent.Image} />
+                                    <img alt='student' className='student-img-data' src={currentStudent.Image} />
                                 : null
                         }
                         {
                             isEditMode && image ?
                                 !image.includes("data:") ?
-                                    <img className='student-img' src={require(`../assets/${image}`)} />
+                                    <img alt='student' className='student-img' src={require(`../assets/${image}`)} />
                                     :
-                                    <img className='student-img-data' src={image} />
+                                    <img alt='student' className='student-img-data' src={image} />
                                 : null
                         }
                     </div>
