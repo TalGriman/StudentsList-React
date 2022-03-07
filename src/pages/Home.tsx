@@ -130,6 +130,15 @@ const Home: FC = (props) => {
         setIsCheckedboxVisible(false);
     };
 
+    const handleSelectAllStudents = () => {
+        const tempStudents = [...students];
+        const tempSelectedStudents = [];
+        for (let i = 0; i < tempStudents.length; i++) {
+            tempSelectedStudents.push(tempStudents[i].ID);
+        }
+        setCheckedStudents(tempSelectedStudents);
+    };
+
 
 
     return (
@@ -146,6 +155,10 @@ const Home: FC = (props) => {
                             </>
                             :
                             <>
+                                <p>Selected {checkedStudents.length}/{students.length}</p>
+                                <div className='delete-srudents-btn-wrapper'>
+                                    <button onClick={handleSelectAllStudents} className='btn'>Select all</button>
+                                </div>
                                 {
                                     checkedStudents.length !== 0 &&
 
@@ -153,7 +166,6 @@ const Home: FC = (props) => {
                                         <button onClick={handleSelectionUsersDelete} className='btn'>Delete</button>
                                     </div>
                                 }
-                                <p>Selected {checkedStudents.length}/3</p>
                                 <div className='delete-srudents-btn-wrapper'>
                                     <button onClick={handleCancelCheckboxVisibility} className='btn'>Cancel</button>
                                 </div>

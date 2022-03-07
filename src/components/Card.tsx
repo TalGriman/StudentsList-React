@@ -27,7 +27,7 @@ const Card: FC<CardProps> = (props) => {
                 :
                 <img className='card__img_data' src={student.Image} />
             }
-            <div className={`card__checkbox_wrapper ${!isCheckedboxVisible && 'card__checkbox_wrapper_disabled'} ${checkedStudents.length === 3 && !checkedStudents.includes(student.ID) && 'card__checkbox_wrapper_disabled'}`}>
+            <div className={`card__checkbox_wrapper ${!isCheckedboxVisible && 'card__checkbox_wrapper_disabled'}`}>
                 <CheckBoxInput studentID={student.ID} handleSelectStudent={handleSelectStudent} checkedStudents={checkedStudents} />
             </div>
             <div className='card__body'>
